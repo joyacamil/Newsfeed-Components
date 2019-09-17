@@ -39,6 +39,7 @@ function menuCreator(menuArr) {
   // created elements
   const menu = document.createElement('div');
   const nav = document.createElement('ul');
+  const menuButton = document.querySelector('.menu-button');
 
   // list items
   menuArr.forEach(item => {
@@ -46,6 +47,10 @@ function menuCreator(menuArr) {
     navItem.textContent = item;
     nav.appendChild(navItem);
   });
+
+  // added class
+  menu.classList.add('menu');
+
 
   return menu;
 }
