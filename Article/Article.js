@@ -114,57 +114,52 @@ const data = [
 const articles = document.querySelector('.articles')
 */
 
+const article = (dataObj) => {
 
-function articles(title, date, firstParagraph, secondParagraph, thirdParagraph) {
-
-  const article = document.createElement('div');
-  const articleTitle = document.createElement('h2');
-  const articleDate = document.createElement('p');
+  // variables created
+  const articleDiv = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
   const p1 = document.createElement('p');
   const p2 = document.createElement('p');
   const p3 = document.createElement('p');
   const expand = document.createElement('span');
 
-  article.classList.add('article');
-  articleDate.classList.add('date');
+  // added to classes
+  articleDiv.classList.add('article');
+  date.classList.add('date');
   expand.classList.add('expandButton');
 
-  article.appendChild(articleTitle);
-  article.appendChild(articleDate);
-  article.appendChild(p1);
-  article.appendChild(p2);
-  article.appendChild(p3);
-  article.appendChild(expand);
+  // added textContent
+  title.textContent = dataObj.title;
+  date.textContent = dataObj.date;
+  p1.textContent = dataObj.firstParagraph;
+  p2.textContent = dataObj.secondParagraph;
+  p3.textContent = dataObj.thirdParagraph;
+  expand.textContent = 'I demand you EXPAND.';
 
-  articleTitle.textContent = 'title';
-  articleDate.textContent = 'date';
-  p1.textContent = 'firstParagraph';
-  p2.textContent = 'secondParagraph';
-  p3.textContent = 'thirdParagraph';
-  expand.textContent = 'expand';
+  // formatted
+  articleDiv.appendChild(title);
+  articleDiv.appendChild(date);
+  articleDiv.appendChild(p1);
+  articleDiv.appendChild(p2);
+  articleDiv.appendChild(p3);
+  articleDiv.appendChild(expand);
 
-
-  /*  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-   
-  Step 3: return the entire component.
-   */
-
+  // toggle event
   expand.addEventListener('click', () => {
-    article.classList.toggle('article-open');
-    expand.textContent = 'close';
+    articleDiv.classList.toggle('article-open');
+
+    expand.textContent = 'You may close.'
   });
 
-  return article;
+  return articleDiv;
 }
 
-/* Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-*/
-const article = document.querySelector('.articles');
+ 
 
-data.forEach((item) => {
-  article.appendChild(articles(item));
-})
-
-/*  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
-*/
+data.map(articleObj => {
+  const newArticle = article(articleObj);
+  const articles = document.querySelector('.articles');
+  articles.appendChild(newArticle);
+}); 
