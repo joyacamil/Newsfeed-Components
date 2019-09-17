@@ -114,7 +114,7 @@ const data = [
 const articles = document.querySelector('.articles')
 */
 
-const article = (dataObj) => {
+const articleCreator = (dataObj) => {
 
   // variables created
   const articleDiv = document.createElement('div');
@@ -153,13 +153,13 @@ const article = (dataObj) => {
     expand.textContent = 'You may close.'
   });
 
+  // returned
   return articleDiv;
 }
 
- 
-
+//  mapped
 data.map(articleObj => {
-  const newArticle = article(articleObj);
+  const newArticle = articleCreator(articleObj);
   const articles = document.querySelector('.articles');
   articles.appendChild(newArticle);
 }); 
