@@ -34,7 +34,7 @@ let menuItems = [
   
 */
 
-function menuCreator(menuArr) {
+const menuCreator = (menuArr) => {
 
   // created elements
   const menu = document.createElement('div');
@@ -50,7 +50,18 @@ function menuCreator(menuArr) {
 
   // added class
   menu.classList.add('menu');
+  menuButton.classList.add('menu-button')
 
+  // structured
+  menu.appendChild(nav);
+
+// 
+  menuButton.addEventListener('click',() => {
+   menu.classList.toggle('menu--open');
+  })
 
   return menu;
-}
+};
+
+const body = document.querySelector('body');
+body.appendChild(menuCreator(menuItems))
