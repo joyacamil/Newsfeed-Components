@@ -118,30 +118,30 @@ const articles = document.querySelector('.articles')
 function articles(title, date, firstParagraph, secondParagraph, thirdParagraph) {
 
   const article = document.createElement('div');
-  const h2 = document.createElement('h2');
-  const p = document.createElement('p');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
   const p1 = document.createElement('p');
   const p2 = document.createElement('p');
   const p3 = document.createElement('p');
-  const span = document.createElement('span');
+  const expand = document.createElement('span');
 
   article.classList.add('article');
-  p.classList.add('date');
-  span.classList.add('expandButton');
+  articleDate.classList.add('date');
+  expand.classList.add('expandButton');
 
-  article.appendChild(h2);
-  article.appendChild(p);
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
   article.appendChild(p1);
   article.appendChild(p2);
   article.appendChild(p3);
-  article.appendChild(span);
+  article.appendChild(expand);
 
-  h2.textContent = 'title';
-  p.textContent = 'date';
+  articleTitle.textContent = 'title';
+  articleDate.textContent = 'date';
   p1.textContent = 'firstParagraph';
   p2.textContent = 'secondParagraph';
   p3.textContent = 'thirdParagraph';
-  span.textContent = 'expand';
+  expand.textContent = 'expand';
 
 
   /*  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
@@ -149,9 +149,9 @@ function articles(title, date, firstParagraph, secondParagraph, thirdParagraph) 
   Step 3: return the entire component.
    */
 
-  span.addEventListener('click', () => {
+  expand.addEventListener('click', () => {
     article.classList.toggle('article-open');
-    span.textContent = 'close';
+    expand.textContent = 'close';
   });
 
   return article;
