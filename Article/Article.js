@@ -85,6 +85,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Dee vs Deedee',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt, ex sodales vestibulum faucibus, enim dolor vulputate nunc, non condimentum justo tortor in nisl. Vestibulum in ultricies orci. Fusce orci risus, sagittis nec ipsum sit amet, malesuada lacinia quam. Fusce sit amet lectus vulputate, eleifend felis at, sodales libero. Aenean ornare, libero et cursus interdum, justo arcu elementum tortor, a ullamcorper ipsum metus a augue. In molestie, tortor et consectetur ultricies, elit odio dignissim purus, sit amet egestas erat augue et mi. Suspendisse consequat a lacus vitae gravida. Nulla fermentum at justo et suscipit. Nam venenatis libero cursus libero tempus, et tristique leo pellentesque. Maecenas at velit nec ipsum consectetur bibendum. Nulla facilisi. Ut efficitur est et leo pretium iaculis. Sed a blandit sapien. Nulla suscipit venenatis egestas. `,
+
+    secondParagraph: `Morbi accumsan imperdiet eros, quis maximus enim mattis nec. Pellentesque vulputate eros id ipsum viverra molestie. Phasellus vitae neque ultrices, consectetur elit eu, consequat mi. Integer non risus non neque consequat efficitur non eu enim. Pellentesque sit amet posuere mauris. Nulla vel ante vitae tortor rutrum mollis. Phasellus porttitor quam nisl, quis rutrum lectus dictum non. Nullam risus dui, vehicula in magna in, eleifend rhoncus justo. Vivamus auctor facilisis porttitor. Fusce non aliquam arcu, at laoreet libero. Aenean eu blandit lacus. Integer pellentesque eu nisi at bibendum. Curabitur at consequat ligula, ut sodales ante. Nullam quam lorem, pretium nec elementum non, volutpat eu ex. Ut sollicitudin, nisi sit amet fringilla vestibulum, tortor felis egestas purus, ut sodales nulla mi sed orci. Vivamus fringilla in justo et facilisis. `,
+
+    thirdParagraph: `Morbi accumsan imperdiet eros, quis maximus enim mattis nec. Pellentesque vulputate eros id ipsum viverra molestie. Phasellus vitae neque ultrices, consectetur elit eu, consequat mi. Integer non risus non neque consequat efficitur non eu enim. Pellentesque sit amet posuere mauris. Nulla vel ante vitae tortor rutrum mollis. Phasellus porttitor quam nisl, quis rutrum lectus dictum non. Nullam risus dui, vehicula in magna in, eleifend rhoncus justo. Vivamus auctor facilisis porttitor. Fusce non aliquam arcu, at laoreet libero. Aenean eu blandit lacus. Integer pellentesque eu nisi at bibendum. Curabitur at consequat ligula, ut sodales ante. Nullam quam lorem, pretium nec elementum non, volutpat eu ex. Ut sollicitudin, nisi sit amet fringilla vestibulum, tortor felis egestas purus, ut sodales nulla mi sed orci. Vivamus fringilla in justo et facilisis.`
   }
 ];
 
@@ -102,13 +111,55 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
-
-  Step 3: return the entire component.
-
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
-
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
-
+const articles = document.querySelector('.articles')
 */
+
+const articleCreator = (dataObj) => {
+
+  // variables created
+  const articleDiv = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  // added to classes
+  articleDiv.classList.add('article');
+  date.classList.add('date');
+  expand.classList.add('expandButton');
+
+  // added textContent
+  title.textContent = dataObj.title;
+  date.textContent = dataObj.date;
+  p1.textContent = dataObj.firstParagraph;
+  p2.textContent = dataObj.secondParagraph;
+  p3.textContent = dataObj.thirdParagraph;
+  expand.textContent = 'I demand you EXPAND.';
+
+  // formatted
+  articleDiv.appendChild(title);
+  articleDiv.appendChild(date);
+  articleDiv.appendChild(p1);
+  articleDiv.appendChild(p2);
+  articleDiv.appendChild(p3);
+  articleDiv.appendChild(expand);
+
+  // toggle event
+  expand.addEventListener('click', () => {
+    articleDiv.classList.toggle('article-open');
+
+    expand.textContent = 'You may close.'
+  });
+
+  // returned
+  return articleDiv;
+}
+
+//  mapped
+data.map(articleObj => {
+  const newArticle = articleCreator(articleObj);
+  const articles = document.querySelector('.articles');
+  articles.appendChild(newArticle);
+}); 
